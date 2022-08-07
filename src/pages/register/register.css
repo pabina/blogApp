@@ -1,0 +1,57 @@
+/* .register{
+    height: calc(100vh- 50px);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background: url("https://images.unsplash.com/photo-1524055988636-436cfa46e59e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=735&q=80");
+
+} */
+.register{
+    height: calc(100vh - 50px);
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  background:linear-gradient(
+    rgba(255,255,255,0.5),
+    rgba(255,255,255,0.5)
+    ), url("https://images.unsplash.com/photo-1518770660439-4636190af475?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80");
+  background-size: cover;
+}
+.registerTitle{
+    font-size: 50px;
+}
+.registerForm{
+ margin-top: 20px;
+ display: flex;
+ flex-direction: column;   
+}
+.registerForm>label{
+ margin: 10px 0;   
+}
+.registerInput{
+    padding: 10px;
+    background-color: white;
+    border:none;
+
+}
+.registerButton{
+    margin-top: 20px;
+    cursor: pointer;
+    background-color: teal;
+    border: none;
+    color: white;
+    border-radius: 10px;
+    padding: 10px;
+}
+.registerLoginButton{
+    position: absolute;
+    top: 70px;
+    right: 20px;
+    background-color: rgb(243, 113, 113);
+    cursor: pointer;
+    border:none;
+    padding:10px;
+    color:white;
+    border-radius: 10px;
+}
