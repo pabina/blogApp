@@ -1,10 +1,12 @@
 import React from 'react';
 import "./post.css";
+import { Link } from 'react-router-dom';
 
 const Post = () => {
   return (
     <>
     <div className="post">
+      <Link to= "post/`${1}`" className='link'>
        
     <img src="https://images.unsplash.com/photo-1533740566848-5f7d3e04e3d7?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=773&q=80" alt="" 
     className="postImg" /> 
@@ -26,6 +28,7 @@ const Post = () => {
       Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ullam ad deserunt magni at necessitatibus perspiciatis est omnis suscipit dolorem? Ipsum a et fuga vitae 
       adipisci ipsa dolores accusantium reiciendis magnam!
     </p>
+    </Link>
     </div>
     </>
   )

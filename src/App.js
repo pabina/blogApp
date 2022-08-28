@@ -8,19 +8,25 @@ import Login from './pages/login/Login';
 import Register from './pages/register/Register';
 import {BrowserRouter as Router,Routes,Route} from "react-router-dom"
 const App = () => {
-  const user=true;
+  const user=false;
   return (
     <>
-   <TopBar/>
+  
    <Router>
+   <TopBar/> 
     <Routes>
       <Route path='/' element={<Home/> }/>
-      {/* <Route path='/single' element={<Single/> }/> */}
-     <Route path='/post/:postId' element={<Single/>} />
-      <Route path='/write' element={user?<Write/>:<Register/>}/>
+      <Route path='/register' element={ user?<Home/>:<Register/>}/>
       <Route path='/settings' element={user?<Settings/>:<Register/> }/>
       <Route path='/login' element={user?<Home/>:<Login/>}/>
-      <Route path='/register' element={ user?<Home/>:<Register/>}/>
+      <Route path='/write' element={user?<Write/>:<Register/>}/>
+      <Route path='/post/:postId' element={<Single/>} />
+      {/* <Route path='/single' element={<Single/> }/> */}
+     
+      
+      
+     
+     
       
     </Routes>
    </Router>
