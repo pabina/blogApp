@@ -27,17 +27,17 @@ postRoute.post("/",async(req,res)=>{
        
   try {
    const post=await Post.findById(req.params.id);
-    if(post.body.username === req.body.username){
+    if(post.username === req.body.username){
         try{
             const updatedPost=await Post.findByIdAndUpdate(req.params.id,{$set:req.body},{new:true});   
         
-    res.status(200).json(updatedPost);
+       res.status(200).json(updatedPost);
      
   } catch (error) {
     res.status(500).json(error);
   }
   }  else{
-    res.status(409).json("you can  update only user post");
+    res.status(401).json("you can  update only user post");
   }
 }catch(error){
     res.status(400).json(error);
@@ -46,34 +46,60 @@ postRoute.post("/",async(req,res)=>{
 
 
 //delete
-      postRoute.delete("/:id",async(req,res)=>{
-  if(req.body.userId === req.params.id){
-    try {
-      const user =await User.findById(req.params.id); 
-try {
-  await Post.deleteMany({username:user.username})
-  await User.findByIdAndDelete(req.params.id);
-  res.status(200).json("user has been deleted");
-}
-catch (error) {
-  res.status(500).json(error);  
-  }} 
-  catch (error) {
-  res.status(404).json("user not found!");
-} }  else{
-  res.status(409).json("you can not delete other account");
-}
-})
+postRoute.delete("/:id",async(req,res)=>{
+       
+  try {
+   const post=await Post.findById(req.params.id);
+    if(post.username === req.body.username){
+        try{
+            await Post.findByIdAndDelete(req.params.id);   
+        
+       res.status(200).json("post has been deleted");
+     
+  } catch (error) {
+    res.status(500).json(error);
+  }
+  }  else{
+    res.status(401).json("you can  delete only user post");
+  }
+}catch(error){
+    res.status(400).json(error);
+}})
+
+
+
 
 //get  one post
  postRoute.get("/:id",async(req,res)=>{
  try {
-  const user=await User.findById(req.params.id);
-  const {password,...others}=user._doc;
-  res.status(200).json(user);
+  const post=await Post.findById(req.params.id);
+  // const {password,...others}=post._doc;
+  res.status(200).json(post);
  } catch (error) {
   res.status(500).json(error);
  }
+ })
+
+ //get all post
+ postRoute.get("/",async(req,res)=>{
+  const username=req.query.user;
+  const catName=req.query.cat;
+  try {
+    let posts;
+    if(username){
+   posts=await Post.find({username:username});
+  }else if(catName){
+    posts=await Post.find({category:{
+      $in:[catName]
+    }
+    })
+  }else{
+    posts= await Post.find();
+  }
+    res.status(200).json(posts);
+  } catch (error) {
+    res.status(500).json(error)
+  }
  })
 
 
